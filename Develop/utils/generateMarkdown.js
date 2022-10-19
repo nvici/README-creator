@@ -2,6 +2,7 @@ class genRead {
 
   // TODO: Create a function that returns a license badge based on which license is passed in
   // If there is no license, return an empty string
+  //licences badges link
       static renderLicenseBadge(license) {
         const badges = {
           MIT: '[![License: MIT](https://img.shields.io/github/license/mashape/apistatus)](https://opensource.org/licenses/MIT)',
@@ -13,6 +14,7 @@ class genRead {
   
   // TODO: Create a function that returns the license link
   // If there is no license, return an empty string
+  //licenses link
       static renderLicenseLink(license) {
         const licenseLinks = {
           MIT: '[MIT](https://choosealicense.com/licenses/mit/)',
@@ -24,6 +26,7 @@ class genRead {
   
   // TODO: Create a function that returns the license section of README
   // If there is no license, return an empty string
+  //links answers to readme
       static renderLicenseSection(license) {
         if(license){
           return `Licensed under the ${this.renderLicenseLink(license)} license`
@@ -49,6 +52,7 @@ class genRead {
       }
   
   // TODO: Create a function to generate markdown for README
+  //this function generates the readme
     static generateMarkdown(data) {
     return `
   # ${data.title}
