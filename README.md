@@ -20,7 +20,8 @@ changes with approval.
   ## License
   no license
   ## Test Cases
-  undefined
+  1. Use Node index.js to verify the app runs successfully. 2. After answering the prompted questions a README.md will generate. 3. Preview mode should be able to be opened. 4. The licence badge will appear next to title of project. 5. 
+The URL link should be tested to correctly route to github profile. 6. The license badge will route to  corresponding URL 7. Lastly verify the email address link is working.
   ## Questions
   ### The GitHub username is: nvici
   ### The GitHub link is: https://github.com/nvici
