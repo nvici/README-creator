@@ -1,16 +1,20 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs')
-const {generateMarkdown} = require('./utils/generateMarkdown')
-// const generateMarkdown = require('./utils/generateMarkdown');
-// const { writeFile } = require('fs').promises;
+const genRead = require('./utils/generateMarkdown')
+
 
 // TODO: Create an array of questions for user input
-inquirer.prompt([
+const questions = [
+        {
+            type: 'input',
+            name: 'title',
+            message: 'What is the title of the project?',
+        },
         {
             type: 'input',
             name: 'description',
-            message: 'Please write a general description of your project.',
+            message: 'Provide a brief description of your project.',
         },
         {
             type: 'input',
@@ -24,21 +28,31 @@ inquirer.prompt([
         },
         {
             type: 'input',
-            name: 'Contribution',
+            name: 'contribution',
             message: 'What are the contribution guidelines.',
         },
         {
             type: 'input',
-            name: 'test',
+            name: 'tests',
             message: 'Please provide any testing instructions',
         },
-    ]) .then((answers) => {
-        console.log(answers)
-        const readMeContent = generateMarkdown(answers);
-        console.log(readMeContent)
-
-        fs.writeFile('README.md', readMeContent, (err) => err ? console.log(err): console.log('File was created'));
-    });
+        {
+            type: 'list',
+            message: 'Which license is this project covered under?',
+            name: 'license',            
+            choices: ['MIT' , 'EPL', 'Apache'],
+        },
+        {
+            type: 'input',
+            name: 'github',
+            message: 'What is your github username?',
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'What is your email address?',
+        },
+    ];
 
 
 // TODO: Create a function to write README file
@@ -47,15 +61,24 @@ inquirer.prompt([
 
 
 // TODO: Create a function to initialize app
-// const init = () => {
-//     promptUser()
-//         .then((answers) => writeFile('README.md', generateMarkdown(answers)))
-//         .then(() => console.log('Successfully wrote to README.md'))
-//         .catch((err) => console.error(err));
-
-// };
-
+function init() {
+    
+    return inquirer.prompt(questions)
+    .then((data) => {
+        const input = genRead.generateMarkdown(data);
+        fs.writeFile('README.md', input, function(err){
+          if (err) {
+            console.log('Could not save file', err)           
+          } else {
+            console.log('Success: new README.md file generated inside the current folder')
+          }
+        })
+      })
+      .catch((error) => {
+          console.log(error)
+      }) 
+}
 // Function call to initialize app
 
-// init();
+init();
 
